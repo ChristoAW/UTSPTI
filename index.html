@@ -11,73 +11,107 @@
   </head>
   <body>
     <div class="container-lg">
+      <!--header UTS PTI-->
       <div class="header">
         <h2>UTS PTI</h2>
       </div>
-      <div class="stats">
-        <h4>Makan</h4>
-        <progress id="makancoba" value="10" max="100"></progress>
-        <div class="progress active">
-          <div
-            class="progress-bar"
-            role="progressbar"
-            style="width: 80%"
-            aria-valuenow="20"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            id="makan"
-            step="5"
-          ></div>
-        </div>
-        <h4>Tidur</h4>
-        <div class="progress">
-          <div
-            class="progress-bar"
-            role="progressbar"
-            style="width: 50%"
-            aria-valuenow="50"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            id="tidur"
-          ></div>
-        </div>
-        <h4>Fun</h4>
-        <div class="progress">
-          <div
-            class="progress-bar"
-            role="progressbar"
-            style="width: 50%"
-            aria-valuenow="50"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            id="fun"
-          ></div>
-        </div>
-        <h4>Belajar</h4>
-        <div class="progress">
-          <div
-            class="progress-bar"
-            role="progressbar"
-            style="width: 80%"
-            aria-valuenow="50"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            id="belajar"
-          ></div>
-        </div>
-        <div class="row" id="pilihan">
-          <div class="col-lg-3">
-            <button type="button" onclick="javaScript:tambahMakan()">
-              Makan
-            </button>
+      <!--Menu login-->
+      <div class="loginMenu">
+        <input type="text" id="inputNama" />
+        <button id="readyToPlay">Play</button>
+      </div>
+      <!--Main menu-->
+      <div class="mainMenu">
+        <div class="stats">
+          <!--tag label for bisa diganti pake yang lain-->
+          <label for="kesehatan">Kesehatan</label>
+          <div class="progress active">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              style="width: 50%"
+              id="kesehatan"
+            ></div>
+          </div>
+          <label for="makan">Makan</label>
+          <div class="progress active">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              style="width: 100%"
+              id="makan"
+            ></div>
+          </div>
+          <label for="tidur">Tidur</label>
+          <div class="progress">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              style="width: 50%"
+              id="tidur"
+            ></div>
+          </div>
+          <label for="Fun">Fun</label>
+          <div class="progress">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              style="width: 50%"
+              id="fun"
+            ></div>
+          </div>
+          <label for="belajar">Belajar</label>
+          <div class="progress">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              style="width: 80%"
+              id="belajar"
+            ></div>
           </div>
         </div>
+        <!--Pilihan-->
+        <div class="pilihan">
+          <button type="button" onclick="javaScript:tambahMakan()">
+            Makan
+          </button>
+          <button type="button" onclick="">Tidur</button>
+          <button type="button" onclick="">Fun</button>
+          <button type="button" onclick="">Belajar</button>
+        </div>
+        <!--Jam-->
         <div id="clock">
-          <p><span id="hour">5</span>:<span id="minute">30</span></p>
-          <button type="button" onclick="javaScript:jam()">Jam</button>
+          <p><span id="hour">05</span>:<span id="minute">00</span></p>
+        </div>
+        <!--Tanggal-->
+        <div id="tanggal">
+          <p><span id="hari">28</span>/<span id="bulan">2</span></p>
+        </div>
+        <!--Tempat Taro Asset Model Orang-->
+        <div class="model"></div>
+        <!--Sapaan-->
+        <div class="greetings">
+          <p>
+            Good <span id="timeOfDay">Morning</span> <span id="nama"></span>
+          </p>
         </div>
       </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".mainMenu").hide();
+      });
+      $("#readyToPlay").click(function () {
+        $(".loginMenu").hide();
+        $(".mainMenu").show();
+        setInterval(kurangMakan, 1000);
+        setInterval(waktu, 1000);
+        setInterval(timeOfDay, 10);
+        nama = $("#inputNama").val();
+        $("#nama").text(nama);
+      });
+    </script>
     <script src="script.js"></script>
   </body>
 </html>
