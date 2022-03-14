@@ -1,3 +1,25 @@
+//bagian pilih char
+var slide_img = document.querySelector('.slide-img');
+var images = ['male.png', 'female.png'];
+var i = 0;
+
+function prev(){
+  if(i <= 0) i = images.length;
+  i--;
+  return setImg();
+}
+
+function next(){
+  if(i >= images.length - 1) i = -1;
+  i++;
+  return setImg();
+}
+
+function setImg(){
+  return slide_img.setAttribute('src', 'gambar/'+images[i]); 
+}
+//sampe sini
+
 function kurangMakan() {
   test = document.getElementById("makan");
   style = test.getAttribute("style");
