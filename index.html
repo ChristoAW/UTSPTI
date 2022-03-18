@@ -9,131 +9,480 @@
       crossorigin="anonymous"
     />
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container-lg">
       <!--header UTS PTI-->
-      <div class="header text-center">
-        <h2>UTS PTI</h2>
+      <div class="header text-center pt-3">
+        <h2 style="font-size: 80px; font-weight: bolder">(: UMN LYFE :)</h2>
       </div>
+      <hr style="height: 5px; color: black; opacity: 0.7" />
+
       <!--Menu login-->
-      <div class="loginMenu">
+      <div class="loginMenu" style="padding: 10% 0">
         <div class="row d-flex align-items-center mb-3">
           <div>
-            <h5>Choose Your Gender Here</h5>
+            <h5 style="font-size: 40px">Choose Your Gender Here</h5>
           </div>
           <div class="col align-items-end">
-            <button class="btn" onclick="prev()">Prev</button>
+            <button class="btn" onclick="prev()" style="width: 105px">
+              Prev
+            </button>
           </div>
-  
-          <div class="col img-box">
-            <img src="gambar/male.png" class="slide-img rounded" alt="" style="width: 200px;">
+
+          <div class="col img-box mb-3">
+            <img
+              src="gambar/male.png"
+              class="char-img rounded"
+              alt=""
+              style="width: 200px"
+            />
           </div>
           <div class="col">
-            <button class="btn" onclick="next()">Next</button>
+            <button class="btn" onclick="next()" style="width: 105px">
+              Next
+            </button>
           </div>
+          <div class="row mx-2">
+            <div class="col-md-4 mb-3">
+              <select class="form-select" id="pelajaranFavorit">
+                <option selected>Pilih Pelajaran Favorit</option>
+                <option value="pti">PTI</option>
+                <option value="os">OS</option>
+                <option value="inggris">Inggris</option>
+                <option value="kalkulus">Kalkulus</option>
+              </select>
+            </div>
+            <div class="col mb-3">
+              <select class="form-select" id="makananFavorit">
+                <option selected>Pilih Makanan Favorit</option>
+                <option value="0">Mie</option>
+                <option value="1">Burger</option>
+                <option value="2">Bakso</option>
+                <option value="3">Keripik Kentang</option>
+                <option value="4">Salad</option>
+                <option value="5">Pecel</option>
+                <option value="6">Smoothies</option>
+                <option value="7">Oatmeal</option>
+              </select>
+            </div>
+            <div class="col mb-3">
+              <select class="form-select" id="aktivitasFavorit">
+                <option selected>Pilih Aktivitas Favorit</option>
+                <option value="0">Bermain Komputer</option>
+                <option value="1">Basket</option>
+                <option value="2">Bermain Gitar</option>
+                <option value="3">Melukis</option>
+              </select>
+            </div>
+          </div>
+          <div class="row mx-2 justify-content-center">
+            <div class="col-md-10 py-2">
+              <div class="form-floating">
+                <input
+                  class="form-control"
+                  type="text"
+                  id="inputNama"
+                  placeholder="Enter Your Name.."
+                />
+                <label for="inputNama">Enter Your Name..</label>
+              </div>
+            </div>
+            <div class="col">
+              <button type="button" class="btn" id="readyToPlay">Play</button>
+            </div>
+          </div>
+        </div>
       </div>
 
-        <input type="text" id="inputNama" placeholder="Enter Your Name.." />
-        <button id="readyToPlay">Play</button>
+      <!--Stats selalu diatas menu lainnya-->
+      <div
+        class="stats my-2 p-4 border rounded-3 fw-bold"
+        style="background-color: rgba(255, 255, 255, 0.6)"
+      >
+        <!--tag label for bisa diganti pake yang lain-->
+        <label for="kesehatan">Health</label>
+        <div class="progress active">
+          <div
+            class="progress-bar bg-success"
+            role="progressbar"
+            style="width: 100%"
+            id="kesehatan"
+          ></div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="makan">Hunger</label>
+            <div class="progress active">
+              <div
+                class="progress-bar bg-danger"
+                role="progressbar"
+                style="width: 100%"
+                id="makan"
+              ></div>
+            </div>
+          </div>
+          <div class="col">
+            <label for="tidur">Energy</label>
+            <div class="progress">
+              <div
+                class="progress-bar bg-info"
+                role="progressbar"
+                style="width: 100%"
+                id="tidur"
+              ></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="Fun">Fun</label>
+            <div class="progress">
+              <div
+                class="progress-bar bg-primary"
+                role="progressbar"
+                style="width: 100%"
+                id="fun"
+              ></div>
+            </div>
+          </div>
+          <div class="col">
+            <label for="belajar">Intelligence</label>
+            <div class="progress">
+              <div
+                class="progress-bar bg-secondary"
+                role="progressbar"
+                style="width: 0%"
+                id="belajar"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center my-2">
+          <!--Semester-->
+          <p style="margin: 5px">Semester <span id="semester">1</span></p>
+          <!--Jam-->
+          <div id="clock">
+            <p style="margin: 5px">
+              <span id="hour">05</span>:<span id="minute">00</span>
+            </p>
+          </div>
+          <!--Tanggal-->
+          <div id="tanggal">
+            <p style="margin: 5px">
+              <span id="hari">1</span>/<span id="bulan">1</span>
+            </p>
+          </div>
+        </div>
       </div>
+
       <!--Main menu-->
       <div class="mainMenu">
-        <div class="stats">
-          <!--tag label for bisa diganti pake yang lain-->
-          <label for="kesehatan">Kesehatan</label>
-          <div class="progress active">
-            <div
-              class="progress-bar"
-              role="progressbar"
-              style="width: 50%"
-              id="kesehatan"
-            ></div>
-          </div>
-          <label for="makan">Makan</label>
-          <div class="progress active">
-            <div
-              class="progress-bar"
-              role="progressbar"
-              style="width: 100%"
-              id="makan"
-            ></div>
-          </div>
-          <label for="tidur">Tidur</label>
-          <div class="progress">
-            <div
-              class="progress-bar"
-              role="progressbar"
-              style="width: 50%"
-              id="tidur"
-            ></div>
-          </div>
-          <label for="Fun">Fun</label>
-          <div class="progress">
-            <div
-              class="progress-bar"
-              role="progressbar"
-              style="width: 50%"
-              id="fun"
-            ></div>
-          </div>
-          <label for="belajar">Belajar</label>
-          <div class="progress">
-            <div
-              class="progress-bar"
-              role="progressbar"
-              style="width: 80%"
-              id="belajar"
-            ></div>
-          </div>
-        </div>
         <!--Pilihan-->
         <div class="pilihan">
-          <button type="button" onclick="javaScript:tambahMakan()">
-            Makan
-          </button>
-          <button type="button" onclick="">Tidur</button>
-          <button type="button" onclick="">Fun</button>
-          <button type="button" onclick="">Belajar</button>
-        </div>
-        <!--Jam-->
-        <div id="clock">
-          <p><span id="hour">05</span>:<span id="minute">00</span></p>
-        </div>
-        <!--Tanggal-->
-        <div id="tanggal">
-          <p><span id="hari">28</span>/<span id="bulan">2</span></p>
+          <div class="row">
+            <div class="col text-end mb-2">
+              <button type="button" class="btn btn-block" id="toggleMakan">
+                Makan
+              </button>
+            </div>
+            <div class="col">
+              <button type="button" class="btn btn-block" id="toggleTidur">
+                Tidur
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-end mb-2">
+              <button type="button" class="btn btn-block" id="toggleFun">
+                Fun
+              </button>
+            </div>
+            <div class="col">
+              <button type="button" class="btn btn-block" id="toggleBelajar">
+                Belajar
+              </button>
+            </div>
+          </div>
         </div>
         <!--Tempat Taro Asset Model Orang-->
-        <div class="model"></div>
+        <div class="Model text-center" id="Model">
+          <img src="gif/pria.gif" class="model-img" alt="" />
+        </div>
         <!--Sapaan-->
-        <div class="greetings">
+        <div class="greetings text-center fw-bolder fs-3">
           <p>
             Good <span id="timeOfDay">Morning</span> <span id="nama"></span>
           </p>
         </div>
       </div>
+
+      <!--Menu Belajar-->
+      <div class="menuBelajar text-center rounded-3" style="border: 5px solid black;">
+        <div class="row">
+          <img
+            src="gif/belajar.gif"
+            id="belajarImg"
+            style="width: 300px; height: 250px"
+            class="position-absolute start-50 translate-middle-x"
+          />
+        </div>
+        <div class="stats my-2 p-4 fw-bold">
+          <div class="rounded-3" style="background-color: rgba(255, 255, 255, 0.75)">
+          <div class="row" style="margin-top: 260px; padding: 10px">
+            <div class="col-6">
+              <label for="pti">PTI</label>
+              <div class="progress" style="background-color: rgba(0, 0, 0, 0.75)">
+                <div
+                  class="progress-bar bg-danger"
+                  role="progressbar"
+                  style="width: 0%"
+                  id="pti"
+                ></div>
+              </div>
+            </div>
+            <div class="col-6">
+              <label for="os">OS</label>
+              <div class="progress">
+                <div
+                  class="progress-bar bg-primary"
+                  role="progressbar"
+                  style="width: 0%"
+                  id="os"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="padding: 10px;">
+            <div class="col-6">
+              <label for="inggris">Inggris</label>
+              <div class="progress">
+                <div
+                  class="progress-bar bg-warning"
+                  role="progressbar"
+                  style="width: 0%"
+                  id="inggris"
+                ></div>
+              </div>
+              </div>
+              <div class="col-6">
+                <label for="kalkulus">Kalkulus</label>
+                <div class="progress">
+                  <div
+                    class="progress-bar bg-success"
+                    role="progressbar"
+                    style="width: 0%"
+                    id="kalkulus"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 py-3">
+              <select class="form-select" id="belajarApa">
+                <option selected>Ingin belajar apa ?</option>
+                <option value="pti">PTI</option>
+                <option value="os">OS</option>
+                <option value="inggris">Inggris</option>
+                <option value="kalkulus">Kalkulus</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <div class="form-floating">
+                <input
+                  class="form-control"
+                  type="number"
+                  id="jamBelajar"
+                  placeholder="Mau Belajar Berapa Lama ?"
+                />
+                <label for="jamBelajar">Mau Belajar Berapa Lama ?</label>
+              </div>
+            </div>
+        </div>
+          </div>
+          <div class="row">
+            <div class="col text-end">
+              <button class="back btn btn-block btn btn-block">Back</button>
+            </div>
+            <div class="col text-start">
+              <button
+                type="submit"
+                id="submitBelajar"
+                class="btn btn-block"
+                onclick="javaScript:tambahBelajar()"
+              >
+                Belajar
+              </button>
+            </div>
+          </div>
+      </div>
+
+      <!--Menu Tidur-->
+      <div
+        class="menuTidur text-center rounded-3"
+        style="border: 5px solid black; height: 420px"
+      >
+        <img src="gif/tidur.gif" id="tidurImg" />
+        <div class="row">
+          <div class="col-12 my-2 p-4">
+            <div class="form-floating">
+              <input
+                class="form-control"
+                type="number"
+                id="jamTidur"
+                placeholder="Mau Tidur Berapa Jam ?"
+              />
+              <label for="jamTidur">Mau Tidur Berapa Jam ?</label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col text-end">
+            <button class="back btn btn-block">Back</button>
+          </div>
+          <div class="col text-start">
+            <button
+              type="submit"
+              id="submitTidur"
+              class="btn btn-block"
+              onclick="javaScript:tambahTidur()"
+            >
+              Tidur
+            </button>
+          </div>
+        </div>
+      </div>
+
+        <!--Menu Makan-->
+        <div
+          class="menuMakan py-4"
+          style="border: 5px solid black; height: 420px"
+        >
+          <div class="me">
+            <div class="head text-center">
+              <h5 style="font-size: 30px">Makan Apa ?</h5>
+            </div>
+            <div
+              class="row d-flex align-items-center mb-3"
+              style="height: 200px"
+            >
+              <div class="col text-end">
+                <button class="btn" onclick="prevMakan()" style="width: 105px">
+                  Prev
+                </button>
+              </div>
+              <div class="col img-box text-center">
+                <img
+                  src="gambar/mieGoreng.png"
+                  class="makanan-img rounded"
+                  alt=""
+                  style="width: 200px"
+                />
+              </div>
+              <div class="col text-start">
+                <button class="btn" onclick="nextMakan()" style="width: 105px">
+                  Next
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-end">
+              <button class="back btn btn-block">Back</button>
+            </div>
+            <div class="col text-start">
+              <button
+                type="submit"
+                id="submitMakan"
+                class="btn btn-block"
+                onclick="javaScript:tambahMakan()"
+              >
+                Makan
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!--Menu Fun-->
+        <div
+          class="menuFun py-4"
+          style="border: 5px solid black; height: 500px"
+        >
+          <div class="me">
+            <div class="head2 text-center">
+              <h5 style="font-size: 30px">Main Apa ?</h5>
+            </div>
+            <div class="row d-flex align-items-center mb-3">
+              <div class="col text-end">
+                <button class="btn" onclick="prevFun()" style="width: 105px">
+                  Prev
+                </button>
+              </div>
+              <div class="col img-box text-center">
+                <img
+                  src="gif/komputer.gif"
+                  class="fun-img rounded"
+                  alt=""
+                  style="height: 200px"
+                />
+              </div>
+              <div class="col">
+                <button class="btn" onclick="nextFun()" style="width: 105px">
+                  Next
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="stats my-2 p-4 fw-bold">
+            <div class="row">
+              <div class="col-12">
+                  <div class="form-floating text-center">
+                    <input
+                      class="form-control"
+                      type="number"
+                      id="jamFun"
+                      placeholder="Mau Main Berapa Lama ?"
+                    />
+                    <label for="jamFun">Mau Main Berapa Lama ?</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <div class="row">
+            <div class="col text-end">
+              <button class="back btn btn-block">Back</button>
+            </div>
+            <div class="col">
+              <button
+                type="submit"
+                class="btn btn-block"
+                id="submitFun"
+                onclick="javaScript:tambahFun()"
+              >
+                Fun
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr style="height: 5px; color: black; opacity: 0.7" />
+      <div class="bgm">
+        <audio id="wii">
+          <source src="wii.mp3" type="audio/mpeg" />
+        </audio>
+      </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
-      crossorigin="anonymous"></script>
-    <script>
-      $(document).ready(function () {
-        $(".mainMenu").hide();
-      });
-      $("#readyToPlay").click(function () {
-        $(".loginMenu").hide();
-        $(".mainMenu").show();
-        setInterval(kurangMakan, 1000);
-        setInterval(waktu, 1000);
-        setInterval(timeOfDay, 10);
-        nama = $("#inputNama").val();
-        $("#nama").text(nama);
-      });
-    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
     <script src="script.js"></script>
   </body>
 </html>

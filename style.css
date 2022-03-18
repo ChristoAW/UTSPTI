@@ -1,18 +1,38 @@
-.btn{
-    border: none;
-    outline: none;
-    background: #888;
-    padding: 10px 30px;
-    font-size: 20px;
-    color: #ddd;
-    cursor: pointer;
-    margin: 10px auto;
+body {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  background-image: url("gambar/pagi.png");
+  background-position: center;
+  background-size: auto 1800px;
+  background-repeat: no-repeat;
+  min-height: 990px;
 }
 
-.btn:hover{
-    background: #111;
+.btn {
+  border: none;
+  outline: none;
+  background: #888;
+  padding: 10px 30px;
+  font-size: 20px;
+  color: #ddd;
+  cursor: pointer;
+  margin: 10px auto;
+  width: 150px;
 }
 
-.loginMenu{
-    text-align: center;
+.btn:hover {
+  background: rgb(255, 255, 255);
+}
+
+.loginMenu {
+  text-align: center;
+}
+
+.model img {
+  height: 300px;
+  width: 300px;
+  opacity: 100%;
+}
+
+.menuBelajar .progress {
+  background-color: rgba(0, 0, 0, 0.75);
 }
