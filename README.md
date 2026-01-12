@@ -1,65 +1,124 @@
-# UTSPTI
+# Tamagotchi Life Simulation — Phase 1 (JavaScript & jQuery)
 
-Nama Kelompok: BOCAN (BObo CANtik)
-Anggota:
+This repository contains the **initial implementation** of a Tamagotchi-style life simulation game developed over a semester-long university course.
 
-1. 55420 - Christophorus Augusta Wangsa
-2. 54004 - Marcellino Osmon
-3. 55266 - Edison Sigmund
-4. 53752 - Andrew Natanael Tjandra
+The primary focus of Phase 1 was **gameplay system design** — modeling time progression, stat decay, and complex interdependencies between player actions and outcomes.
 
-Aturan game :
+This implementation later became the **feature benchmark** for the Phase 2 React refactor.
 
-//WAKTU
+---
 
-- 0.5 detik real = 1 menit game (12 menit = 1 hari game)
-- game dimulai pada jam 5:00 tanggal 1 bulan 1
+## 🏗 Project Context
 
-//STATS
+- Course: PTI (Web Development)
+- Team Name: BOCAN (BObo CANtik)
+- Team Members:
+  - 55420 — Christophorus Augusta Wangsa
+  - 54004 — Marcellino Osmon
+  - 55266 — Edison Sigmund
+  - 53752 — Andrew Natanael Tjandra
 
-- Setiap 1 menit, terjadi pengurangan statis terhadap stats sebagai berikut :
-  makan, fun, tidur, kesehatan berkurang 0.14%.
-  namun bar kesehatan akan ditambah pengurangannya sebesar 0.14% untuk setiap stat fun/makan/tidur yang dibawah 10%.
-  sehingga bar kesehatan maksimal berkurang 0.52% setiap 1 menit.
-- setiap makanan memiliki penambahan stat yang berbeda:
-  mie = makan (+55), fun (+3), kesehatan(-3)
-  burger = makan (+50), fun (+5), kesehatan(-4)
-  bakso = makan (+45), fun (+6), kesehatan(-2)
-  chips = makan (+20), fun (+10), kesehatan(-7)
-  salad = makan (+35), fun (-8), kesehatan(+6)
-  pecel = makan (+40), fun (-3), kesehatan(+5)
-  smoothies = makan (+35), fun (-5), kesehatan(+4)
-  oatmeal = makan (+45), fun (-5), kesehatan(+8)
-  ketika makanan merupakan favorit user maka, akan mendapatkan penambahan stat fun sebesar +5.
-- setiap aktivitas juga memiliki penambahan stat yang berbeda:
-  komputer = fun (+20), makan(-5), tidur(-6.25)
-  basket = fun (+30), makan(-10), tidur(-9.375), kesehatan (+5)
-  gitar = fun (+15), makan(-3.75), tidur(-3.125), kesehatan (+2.5)
-  melukis = fun (+15), makan(-2.5), tidur(-2.5), kesehatan (+2.5)
+---
 
-  ketika kegiatan merupakan favorit user maka, akan mendapatkan penambahan stat fun sebesar +5.
-  penambahan stat diatas dilakukan setiap 1 jam waktu berlalu saat timelapse
+## 🧩 Core Gameplay Systems
 
-- belajar dilakukan dengan memilih mata kuliah yang mau dipelajar dan mengisi durasi belajar stat yang berubah adalah stat pelajaran yang dipilih tidur dan juga fun:
-  setiap jam belajar:
+### ⏱ Time System
+- 0.5 seconds real-time = 1 in-game minute  
+- 12 in-game hours = 1 in-game day  
+- Game starts at 05:00, Day 1, Month 1
 
-  - bar intelligence +0,5
-  - bar tidur -8
-  - bar fun -6
-    jika yang dipelajari adalah pelajaran favorit akan ada tambahan:
-  - bar intelligence +1
-  - bar fun +2
-    stat intelligence total adalah 25% dari jumlah keempat mata kuliah (25% \* PTI + OS + Inggris + Kalkulus)
+---
 
-- Ketika user tidur, maka akan dilakukan timelapse menuju waktu yang ditentukan oleh input.
-  setiap per jam tidur, maka akan ada penambahan sebesar +25 pada bar tidur , +10 pada bar kesehatan , -3 pada bar makan.
+### 📊 Stat System
 
-- Ketika bar/stat kesehatan, tidur, dan makan dibawah 10%, maka user tidak bisa melakukan kegiatan bermain/fun.
+Every in-game minute:
+- Hunger, Fun, Sleep, Health decrease by **0.14%**
+- If Hunger/Fun/Sleep < 10%, Health decreases an additional **0.14% per stat**
+- Maximum Health decay: **0.52% per minute**
 
-- ketika bar/stat kesehatan, tidur, makan, fun dibawah 10%, maka user tidak bisa belajar.
+---
 
-//GAMEOVER
+### 🍽 Food Effects
 
-- ketika bar kesehatan sudah mencapai 0%, maka akan terjadi game over, karena user mati. lemah
+Each food affects multiple stats differently:
 
-- ketika tanggal 30 bulan 6 / tanggal 31 bulan 12, akan diadakan semesteran. Jika bar intelligence dibawah 75%, maka akan terjadi game over karena user tidak lulus / Drop Out. Namun ketika lulus (intellingence diatas 75%), maka semester akan bertambah. Jika semester 8 dan user lulus, maka akan game over dengan status lulus.
+- Mie: Hunger +55, Fun +3, Health -3  
+- Burger: Hunger +50, Fun +5, Health -4  
+- Bakso: Hunger +45, Fun +6, Health -2  
+- Chips: Hunger +20, Fun +10, Health -7  
+- Salad: Hunger +35, Fun -8, Health +6  
+- Pecel: Hunger +40, Fun -3, Health +5  
+- Smoothies: Hunger +35, Fun -5, Health +4  
+- Oatmeal: Hunger +45, Fun -5, Health +8  
+
+Favorite food bonus:
+- Fun +5
+
+---
+
+### 🎮 Activities
+
+Activities affect stats every in-game hour:
+
+- Computer: Fun +20, Hunger -5, Sleep -6.25  
+- Basket: Fun +30, Hunger -10, Sleep -9.375, Health +5  
+- Guitar: Fun +15, Hunger -3.75, Sleep -3.125, Health +2.5  
+- Painting: Fun +15, Hunger -2.5, Sleep -2.5, Health +2.5  
+
+Favorite activity bonus:
+- Fun +5
+
+---
+
+### 📚 Study System
+
+- Player selects subject and study duration
+- Per hour of study:
+  - Intelligence +0.5
+  - Sleep -8
+  - Fun -6
+
+Favorite subject bonus:
+- Intelligence +1
+- Fun +2
+
+Total Intelligence:
+- Average of 4 subjects (PTI, OS, English, Calculus)
+
+---
+
+### 🛌 Sleep System
+
+- Player inputs sleep duration
+- Per hour of sleep:
+  - Sleep +25
+  - Health +10
+  - Hunger -3
+
+---
+
+### 🚫 Action Restrictions
+
+- If Health, Sleep, or Hunger < 10% → cannot perform fun activities
+- If Health, Sleep, Hunger, or Fun < 10% → cannot study
+
+---
+
+## ☠️ Game Over Conditions
+
+- Health reaches 0% → Game Over (player dies)
+- Semester evaluation dates:
+  - 30 June
+  - 31 December
+
+Rules:
+- Intelligence < 75% → Drop Out (Game Over)
+- Intelligence ≥ 75% → Semester progresses
+- Graduate after passing Semester 8
+
+---
+
+## 📌 Notes
+
+- This version prioritizes **feature completeness and simulation depth**
+- Architectural limitations from DOM-driven logic motivated the Phase 2 refactor
