@@ -1,4 +1,4 @@
-# 7 Day Student Life Simulation — Phase 1 (JavaScript & jQuery)
+# 7 Days Student Life Simulation — Phase 1 (JavaScript & jQuery)
 
 This repository contains the **initial implementation** of a Tamagotchi-style life simulation game developed over a semester-long university course.
 
